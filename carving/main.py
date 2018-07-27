@@ -100,6 +100,7 @@ def get_voxel_bounds(cameras, estimate_better_bounds = False, num_voxels = 4000)
     # Move the limits in a bit since the object must be inside the circle
     xlim = xlim + diff(xlim) / 4 * np.array([1, -1])
     zlim = zlim + diff(zlim) / 4 * np.array([1, -1])
+    ylim = np.copy(xlim)
 
     if estimate_better_bounds:
         # TODO: Implement this method!
@@ -200,3 +201,5 @@ if __name__ == '__main__':
     for c in cameras:
         voxels = carve(voxels, c)
     plot_surface(voxels, voxel_size)
+    print('voxel_size', voxel_size)
+    np.save('voxels.npy', voxels)
